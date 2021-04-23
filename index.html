@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solarTracker</title>
+    <style>
+        html {
+            background-color: white;
+        }
+        
+        .content {
+            background-color:whitesmoke;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            max-width: 640px;
+            text-align: center;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: auto;
+            padding: 0%;
+        }
+
+        .panelLevel {
+            width: 100%;
+            margin: auto;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            background-color: #73996F;
+            font-weight: bold;
+            color: white;
+        }
+
+        .controlPanel {
+            width: 100%;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        .axisControls {
+            border-radius: 5px;
+            width: 75px;
+            height: 75px;
+            background-color: white;
+            border: 2px solid forestgreen;
+            margin: 5px;
+            font-size: x-large;
+        }
+        
+        .axisControls:disabled {
+            border: 2px solid lightgray;
+        }
+    </style>
+        
+</head>
+<body>
+    <div class="content">
+        <div class="panelLevel"> 
+            <h1 id="powerLevel"><!-- power output --></h1>
+            <i id="statusInfo"><!-- status info --></i>
+        </div>
+
+        <div class="controlPanel">
+            <h3>Tracking on/off</h3>
+            <input type="checkbox" id="toggleTracker" onchange="toggleTracker(this)" checked>
+
+            <h3>Horizontal axis</h3>
+            <input type="button" onclick="rotateTracker(1)" class="axisControls" value="&#10226" disabled>
+            <input type="button" onclick="rotateTracker(2)" class="axisControls" value="&#10227" disabled><br>
+            <h3>Vertical axis</h3>
+            <input type="button" onclick="rotateTracker(3)" class="axisControls" value="&#10226" disabled>
+            <input type="button" onclick="rotateTracker(4)" class="axisControls" value="&#10227" disabled><br><br><br>
+            <a href="#" onclick="restartTracker()">Restart tracker</a>
+        </div>
+    </div>
+
+    <script>
+// external js file content
+    </script>
+
+</body>
+</html>
