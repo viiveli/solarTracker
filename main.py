@@ -84,7 +84,7 @@ class Tracker:
     def __init__(self):
         self.running = False
         self.angle_threshold = 1
-        self.level_threshold = 70
+        self.level_threshold = 67
         self.flip_h_axis = 0
         self.avg_panel_level = round(sum(self.get_panel_levels()) / 4, 1)
         self.hibernate = False
@@ -102,6 +102,7 @@ class Tracker:
                         freq(240000000)
                     
                     if self.hibernate:
+                        # coming out of hibernation, first align horizontal axis, then vertical
                         while abs(self.get_h_step_angle()) > self.angle_threshold:
                             stepper_h.angle(abs(self.get_h_step_angle() * 4), self.get_h_step_direction())
 
@@ -110,12 +111,13 @@ class Tracker:
                             stepper_v.angle(1, v_direction, monitor_limits=1)
 
                         self.hibernate = False
+                        time.sleep(5)
                         continue
 
-                    if abs(self.get_h_step_angle()) > self.angle_threshold:
+                    while abs(self.get_h_step_angle()) > self.angle_threshold:
                         stepper_h.angle(abs(self.get_h_step_angle() * 4), self.get_h_step_direction())
                     
-                    if abs(self.get_v_step_angle()) > self.angle_threshold:
+                    while abs(self.get_v_step_angle()) > self.angle_threshold:
                         stepper_v.angle(abs(self.get_v_step_angle() * 2), self.get_v_step_direction(), monitor_limits=1)
 
                 elif not self.hibernate:
